@@ -12,7 +12,7 @@ public class Ipl_Insert {
 public static void main(String[] args) throws Exception {
 Connection myConn = null;
 Statement myStmt = null;
-PreparedStatement ps=myConn.prepareStatement();
+PreparedStatement ps=null;
 
 String dbUrl = "jdbc:mysql://localhost:3306/ipl_teams";
 String user = "root";
@@ -25,7 +25,7 @@ myStmt = myConn.createStatement();
 
 
 
-/*String sql = "CREATE TABLE IPL_Team " +" (Team_Id VARCHAR(255), " +  " Team_Name VARCHAR(255), " +  " Player_Name VARCHAR(255), " + " Player_Score INTEGER)";
+/*String sql = "CREATE TABLE IPL_Team " +" (Team_Id VARCHAR(255), " +  " Team_Name VARCHAR(255), " +  " Player_Name VARCHAR(255), " + " Player_Score INTEGER NULL)";
 myStmt.executeUpdate(sql);
 System.out.println("Created table in given database...");*/
 
@@ -41,13 +41,18 @@ while (read.hasNextLine()) {
     String  teamid= IPL[0] ;  
     String teamname= IPL[1]; 
     String playername=IPL[2];
+    @SuppressWarnings("resource")
+	Scanner s = new Scanner(System.in);
+    System.out.println("Enter the score of "+ playername);
+    String player_score = s.nextLine();
 
     
     //System.out.println(teamid+teamname+playername);
     ps.setString(1, teamid);     
     ps.setString(2, teamname);      
     ps.setString(3, playername);
-    String mql="INSERT INTO IPL_Team (Team_Id, Team_Name,Player_Name) VALUES (?, ?, ?)";
+    ps.setString(4, player_score);
+    String mql="INSERT INTO IPL_Team (Team_Id, Team_Name,Player_Name,Player_Score) VALUES (?,?,?,?)";
     ps=myConn.prepareStatement(mql); 
    
     
