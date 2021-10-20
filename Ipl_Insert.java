@@ -53,7 +53,7 @@ while (read.hasNextLine()) {
     ps.setString(3, playername);
     ps.setString(4, player_score);
     String mql="INSERT INTO IPL_Team (Team_Id, Team_Name,Player_Name,Player_Score) VALUES (?,?,?,?)";
-    ps=myConn.prepareStatement(mql); 
+    ps.executeUpdate(mql); 
    
     
    
