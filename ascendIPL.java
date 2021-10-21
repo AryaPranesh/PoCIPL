@@ -22,20 +22,18 @@ public static void main(String[] args) throws ClassNotFoundException, IOExceptio
 	myConn = DriverManager.getConnection(dbUrl, user, pass);
 	myStmt = myConn.createStatement();
 
-    for (int i = 2390; i<2390; i++) {
-    String query = "select * from IPL_Team where Team_id = '" + i + "' order by Player_Score ASC";
-
+    for (int i = 2301; i<2304; i++) {
+    String query = "select * from ipl_team where Team_id = '" + i + "' order by Player_Score ASC";
     ResultSet rs = myStmt.executeQuery(query);
-
     while (rs.next()) {
 	String teamid = rs.getString("Team_Id");
 	String teamname = rs.getString("Team_Name");
     String playername  = rs.getString("Player_Name");
     String playerscore = rs.getString("Player_Score");
     System.out.println(teamid + "," + teamname + "," + playername + "," + playerscore);
-    String path = "C:\\\\Users\\\\arya.ramachandran\\\\Documents\\\\POC-DBData\\\\iplascend.txt";
+   /* String path = "C:\\\\Users\\\\arya.ramachandran\\\\Documents\\\\POC-DBData\\\\iplascend.txt";
 
-    FileWriter writer;
+    /*FileWriter writer;
     File file = new File(path);
     writer = new FileWriter(file, true);  
    while((rs!=null) && (rs.next()))
@@ -49,7 +47,7 @@ public static void main(String[] args) throws ClassNotFoundException, IOExceptio
    writer.write(rs.getString("Player_Score"));
    }
 
-   writer.close();
+   writer.close();*/
 }
 }
 }catch(SQLException e) {
